@@ -4,7 +4,7 @@ public class SalesWebMVCContext(DbContextOptions<SalesWebMVCContext> options) : 
 {
     public DbSet<SalesWebMVC.Models.Departament> Departament { get; set; } = default!;
     public DbSet<SalesWebMVC.Models.Seller> Seller { get; set; } = default!;
-    public DbSet<SalesWebMVC.Models.SalesRecord> SalesRecords { get; set; } = default!;
+    public DbSet<SalesWebMVC.Models.SalesRecord> SalesRecord { get; set; } = default!;
 
 
 }

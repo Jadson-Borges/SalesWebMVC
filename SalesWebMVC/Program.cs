@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using SalesWebMVC.Service;
 namespace SalesWebMVC
 {
     public class Program
@@ -10,10 +11,24 @@ namespace SalesWebMVC
 
             builder.Services.AddDbContext<SalesWebMVCContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
+            
+            // Registro dos serviços
+            builder.Services.AddScoped<SeedingService>();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            //cria o app
             var app = builder.Build();
+
+            // ===== EXECUTA O SEEDING =====
+            using (var scope = app.Services.CreateScope())
+            {
+                var seedingService = scope.ServiceProvider.GetRequiredService<SeedingService>();
+                seedingService.Seed();
+            }
+            
+
+            
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
