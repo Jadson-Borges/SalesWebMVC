@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -7,23 +6,34 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SalesWebMVC.Migrations
 {
     /// <inheritdoc />
-    public partial class NewEntities : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Departament",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departament", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Seller",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    BirthDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    BaseSalary = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BaseSalary = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     departamentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -35,35 +45,33 @@ namespace SalesWebMVC.Migrations
                         principalTable: "Departament",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateTable(
-                name: "SalesRecords",
+                name: "SalesRecord",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Date = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Ammount = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Ammount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
                     SellerId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SalesRecords", x => x.Id);
+                    table.PrimaryKey("PK_SalesRecord", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SalesRecords_Seller_SellerId",
+                        name: "FK_SalesRecord_Seller_SellerId",
                         column: x => x.SellerId,
                         principalTable: "Seller",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_SalesRecords_SellerId",
-                table: "SalesRecords",
+                name: "IX_SalesRecord_SellerId",
+                table: "SalesRecord",
                 column: "SellerId");
 
             migrationBuilder.CreateIndex(
@@ -76,10 +84,13 @@ namespace SalesWebMVC.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SalesRecords");
+                name: "SalesRecord");
 
             migrationBuilder.DropTable(
                 name: "Seller");
+
+            migrationBuilder.DropTable(
+                name: "Departament");
         }
     }
 }
