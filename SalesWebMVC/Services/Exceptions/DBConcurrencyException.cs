@@ -2,7 +2,7 @@
 {
     public class DBConcurrencyException : ApplicationException
     {
-        public DBConcurrencyException(string messege) : base (messege)
+        public DBConcurrencyException(string messege) : base(messege)
         {
         }
     }
