@@ -1,4 +1,5 @@
-﻿using SalesWebMVC.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using SalesWebMVC.Models;
 
 namespace SalesWebMVC.Services
 {
@@ -6,6 +7,7 @@ namespace SalesWebMVC.Services
     { 
         //dependencia com proteção readonly
         private readonly SalesWebMVCContext _context;
+        
 
         public SellerService(SalesWebMVCContext context)
         {
@@ -25,7 +27,7 @@ namespace SalesWebMVC.Services
 
         public Seller FindById(int id)
         {
-            return _context.Seller.FirstOrDefault(seller => seller.Id == id);
+            return _context.Seller.Include(obj => obj.Departament).FirstOrDefault(seller => seller.Id == id);
         }
 
         public void Remove(int id)

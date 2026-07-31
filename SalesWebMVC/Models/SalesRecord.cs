@@ -1,7 +1,9 @@
 ﻿using SalesWebMVC.Models.Enum;
+using System.ComponentModel.DataAnnotations;
 
 namespace SalesWebMVC.Models
 {
+    [Display(Name = "Registro de Vendas")]
     public class SalesRecord
     {
         public int Id { get; set; }
