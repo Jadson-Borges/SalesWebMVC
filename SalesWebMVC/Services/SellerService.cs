@@ -43,7 +43,7 @@ namespace SalesWebMVC.Services
         {
             if (!_context.Seller.Any(verify => verify.Id == seller.Id))
             {
-                throw new NotFoundException("Id Inexistente!")
+                throw new NotFoundException("Id Inexistente!");
             }
             try
             {
