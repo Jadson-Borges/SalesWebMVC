@@ -1,34 +1,109 @@
 @model SalesWebMVC.Models.Departament
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Departamento";
 }
 
-<h1>Edit</h1>
+<div class="mb-4">
 
-<h4>Departament</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
+    <h2 class="mb-1">
+        <i class="bi bi-pencil-square text-warning me-2"></i>
+        @ViewData["Title"]
+    </h2>
+
+    <p class="text-secondary mb-0">
+        Atualize as informações do departamento.
+    </p>
+
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="row justify-content-center">
+
+    <div class="col-lg-6">
+
+        <div class="card shadow-sm border-0 form-card">
+
+            <div class="card-header">
+
+                <strong>
+
+                    <i class="bi bi-building me-2"></i>
+
+                    Dados do Departamento
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <form asp-action="Edit">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3">
+                    </div>
+
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-4">
+
+                        <label asp-for="Name"
+                               class="form-label">
+
+                            <i class="bi bi-tag me-1"></i>
+
+                            Nome do Departamento
+
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control"
+                               placeholder="Ex.: Vendas, Financeiro, RH..." />
+
+                        <span asp-validation-for="Name"
+                              class="text-danger">
+                        </span>
+
+                    </div>
+
+                    <hr />
+
+                    <div class="d-flex justify-content-end gap-2">
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+
+                            <i class="bi bi-arrow-left me-2"></i>
+
+                            Voltar
+
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-warning text-dark">
+
+                            <i class="bi bi-check-circle me-2"></i>
+
+                            Salvar Alterações
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
 }

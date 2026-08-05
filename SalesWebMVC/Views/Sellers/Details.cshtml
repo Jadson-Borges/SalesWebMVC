@@ -1,64 +1,156 @@
 ﻿@model SalesWebMVC.Models.Seller
 
 @{
-    ViewData["Title"] = "Detalhes";
+    ViewData["Title"] = "Detalhes do Vendedor";
 }
 
-<h2>@ViewData["Title"]</h2>
+<div class="mb-4">
 
-<div>
-    <h4>
-        Detalhes do Vendedor(a)!
-    </h4>
+    <h2 class="mb-1">
 
-    <div>
-        <h4>Seller</h4>
-        <hr />
-        <dl class="dl-horizontal">
+        <i class="bi bi-person-vcard-fill text-info me-2"></i>
 
-            <dt>
-                Nome
-            </dt>
+        @ViewData["Title"]
 
-            <dd>
-                @Html.DisplayFor(model => model.Name)
-            </dd>
+    </h2>
 
-            <dt>
-                Email
-            </dt>
+    <p class="text-secondary mb-0">
 
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-            <dt>
-                Data de Nascimento
-            </dt>
+        Visualize as informações do vendedor.
 
-            <dd>
-                @Html.DisplayFor(model => model.BirthDate)
-            </dd>
+    </p>
 
-            <dt>
-                Salário base
-            </dt>
+</div>
 
-            <dd>
-                @Html.DisplayFor(model => model.BaseSalary)
-            </dd>
-            <dt>
-                Departamento
-            </dt>
+<div class="row justify-content-center">
 
-            <dd>
-                @Html.DisplayFor(model => model.Departament.Name)
-            </dd>
+    <div class="col-lg-8">
 
-        </dl>
+        <div class="card shadow-sm border-0">
+
+            <div class="card-header">
+
+                <strong>
+
+                    <i class="bi bi-person-lines-fill me-2"></i>
+
+                    Informações do Vendedor
+
+                </strong>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="fw-bold text-secondary">
+                            Nome
+                        </label>
+
+                        <div class="fs-5">
+                            @Model.Name
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="fw-bold text-secondary">
+                            Email
+                        </label>
+
+                        <div>
+                            @Model.Email
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="fw-bold text-secondary">
+                            Data de Nascimento
+                        </label>
+
+                        <div>
+                            @Model.BirthDate.ToString("dd/MM/yyyy")
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+
+                        <label class="fw-bold text-secondary">
+                            Salário Base
+                        </label>
+
+                        <div class="text-success fw-semibold fs-5">
+                            @Model.BaseSalary.ToString("C")
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <label class="fw-bold text-secondary">
+                            Departamento
+                        </label>
+
+                        <div>
+
+                            <span class="badge bg-info text-dark fs-6">
+
+                                <i class="bi bi-building me-1"></i>
+
+                                @Model.Departament.Name
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr />
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <a asp-action="Index"
+                       class="btn btn-outline-secondary">
+
+                        <i class="bi bi-arrow-left me-2"></i>
+
+                        Voltar
+
+                    </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@Model.Id"
+                       class="btn btn-primary">
+
+                        <i class="bi bi-pencil-square me-2"></i>
+
+                        Editar
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />        
-        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
-        <a asp-action="Index">Voltar a Lista</a>
-    </form>
+
 </div>
