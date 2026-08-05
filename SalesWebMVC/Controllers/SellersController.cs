@@ -3,6 +3,7 @@ using SalesWebMVC.Models;
 using SalesWebMVC.Models.ViewModels;
 using SalesWebMVC.Services;
 using SalesWebMVC.Services.Exceptions;
+using System.Diagnostics;
 
 
 namespace SalesWebMVC.Controllers
@@ -42,15 +43,15 @@ namespace SalesWebMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
-            
+
             return View(obj);
         }
 
@@ -66,13 +67,13 @@ namespace SalesWebMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var details = _sellerService.FindById(id.Value);
             if (details == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             return View(details);
@@ -82,17 +83,17 @@ namespace SalesWebMVC.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
 
             var obj = _sellerService.FindById(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
 
             List<Departament> departament = _departamentService.FindAll();
-            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departaments = departament};
+            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departaments = departament };
             return View(viewModel);
         }
 
@@ -103,23 +104,30 @@ namespace SalesWebMVC.Controllers
 
             if (id != seller.Id)
             {
-                return BadRequest();
+                RedirectToAction(nameof(Error), new { message = "Id mismath" });
             }
             try
             {
                 _sellerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
+            catch (ApplicationException exception)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = exception.Message });
             }
-            catch (DBConcurrencyException)
-            {
-                return BadRequest();
-            }
+
         }
 
+        public IActionResult Error(string message)
+        {
+            var ViewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+
+            return View(ViewModel);
+        }
 
     }
 }
