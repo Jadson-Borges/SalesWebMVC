@@ -4,69 +4,150 @@
     ViewData["Title"] = "Vendedores";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2 class="mb-0">@ViewData["Title"]</h2>
-    <a asp-action="Create">
-        <button type="button" class="btn btn-primary">Novo Vendedor</button>
+<div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
+
+    <div>
+        <h2 class="mb-1">
+            <i class="bi bi-people-fill text-info me-2"></i>
+            @ViewData["Title"]
+        </h2>
+
+        <p class="text-secondary mb-0">
+            Gerencie os vendedores cadastrados no sistema.
+        </p>
+    </div>
+
+    <a asp-action="Create" class="btn btn-primary shadow-sm">
+        <i class="bi bi-plus-circle me-2"></i>
+        Novo Vendedor
     </a>
+
 </div>
 
-    
+<div class="card shadow-sm border-0">
 
-<table class="table table-striped table-hover">
+    <div class="card-header d-flex justify-content-between align-items-center">
 
-    <thead>
-        <tr class="table-dark">
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
+        <span class="fw-semibold">
+            Lista de Vendedores
+        </span>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
+        <span class="badge bg-info text-dark">
+            @Model.Count() registro(s)
+        </span>
 
-            <th>
-                @Html.DisplayNameFor(model => model.BirthDate)
-            </th>
+    </div>
 
-            <th>
-                @Html.DisplayNameFor(model => model.BaseSalary)
-            </th>
+    <div class="card-body">
 
-            <th>
-                FUNÇÕES
-            </th>
-        </tr>
-    </thead>
-
-
-    <tbody>
-        @foreach (var item in Model)
+        @if (!Model.Any())
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+            <div class="alert alert-info text-center mb-0">
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
+                <i class="bi bi-info-circle me-2"></i>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
+                Nenhum vendedor cadastrado.
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.BaseSalary)
-                </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-                    <a asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
-                </td>
-            </tr>
+            </div>
         }
-    </tbody>
+        else
+        {
+            <div class="table-responsive">
 
-</table>
+                <table class="table table-hover align-middle mb-0">
+
+                    <thead class="table-dark">
+
+                        <tr>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+
+                            <th>
+                                Data de Nascimento
+                            </th>
+
+                            <th class="text-end">
+                                Salário
+
+                            </th>
+
+                            <th class="text-center" style="width:170px">
+                                Ações
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td class="fw-semibold">
+                                    @item.Name
+                                </td>
+
+                                <td>
+                                    @item.Email
+                                </td>
+
+                                <td>
+                                    @item.BirthDate.ToString("dd/MM/yyyy")
+                                </td>
+
+                                <td class="text-end">
+                                    @item.BaseSalary.ToString("C")
+                                </td>
+
+                                <td class="text-center">
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-warning me-1"
+                                       title="Editar">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                    </a>
+
+                                    <a asp-action="Details"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-info me-1"
+                                       title="Detalhes">
+
+                                        <i class="bi bi-eye"></i>
+
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@item.Id"
+                                       class="btn btn-sm btn-danger"
+                                       title="Excluir">
+
+                                        <i class="bi bi-trash"></i>
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+
+    </div>
+
+</div>

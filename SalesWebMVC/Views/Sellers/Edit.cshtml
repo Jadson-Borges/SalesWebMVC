@@ -1,18 +1,18 @@
 ﻿@model SalesWebMVC.Models.ViewModels.SellerFormViewModel
 
 @{
-    ViewData["Title"] = "Cadastrar Vendedor";
+    ViewData["Title"] = "Editar Vendedor";
 }
 
 <div class="mb-4">
 
     <h2 class="mb-1">
-        <i class="bi bi-person-plus-fill text-info me-2"></i>
+        <i class="bi bi-pencil-square text-warning me-2"></i>
         @ViewData["Title"]
     </h2>
 
     <p class="text-secondary mb-0">
-        Preencha os dados abaixo para cadastrar um novo vendedor.
+        Atualize as informações do vendedor.
     </p>
 
 </div>
@@ -21,45 +21,69 @@
 
     <div class="col-lg-8">
 
-        <div class="card shadow-sm border-0">
+        <div class="card shadow-sm border-0 form-card">
 
             <div class="card-header">
 
-                <strong>Informações do Vendedor</strong>
+                <strong>
+
+                    <i class="bi bi-person-lines-fill me-2"></i>
+
+                    Dados do Vendedor
+
+                </strong>
 
             </div>
 
             <div class="card-body">
 
-                <form asp-action="Create">
+                <form asp-action="Edit">
 
-                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                    <input type="hidden" asp-for="Seller.Id" />
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="text-danger mb-3">
+                    </div>
 
                     <div class="row">
 
                         <div class="col-md-6 mb-3">
 
-                            <label asp-for="Seller.Name" class="form-label">
+                            <label asp-for="Seller.Name"
+                                   class="form-label">
+
                                 <i class="bi bi-person me-1"></i>
+
                                 Nome
+
                             </label>
 
-                            <input asp-for="Seller.Name" class="form-control" />
+                            <input asp-for="Seller.Name"
+                                   class="form-control" />
 
-                            <span asp-validation-for="Seller.Name" class="text-danger"></span>
+                            <span asp-validation-for="Seller.Name"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
                         <div class="col-md-6 mb-3">
 
-                            <label asp-for="Seller.Email" class="form-label">
+                            <label asp-for="Seller.Email"
+                                   class="form-label">
+
                                 <i class="bi bi-envelope me-1"></i>
+
                                 Email
+
                             </label>
 
-                            <input asp-for="Seller.Email" class="form-control" />
+                            <input asp-for="Seller.Email"
+                                   class="form-control" />
 
-                            <span asp-validation-for="Seller.Email" class="text-danger"></span>
+                            <span asp-validation-for="Seller.Email"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
@@ -69,49 +93,64 @@
 
                         <div class="col-md-6 mb-3">
 
-                            <label asp-for="Seller.BirthDate" class="form-label">
+                            <label asp-for="Seller.BirthDate"
+                                   class="form-label">
+
                                 <i class="bi bi-calendar-event me-1"></i>
+
                                 Data de Nascimento
+
                             </label>
 
                             <input asp-for="Seller.BirthDate"
                                    type="date"
                                    class="form-control" />
 
-                            <span asp-validation-for="Seller.BirthDate" class="text-danger"></span>
+                            <span asp-validation-for="Seller.BirthDate"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
                         <div class="col-md-3 mb-3">
 
-                            <label asp-for="Seller.BaseSalary" class="form-label">
+                            <label asp-for="Seller.BaseSalary"
+                                   class="form-label">
+
                                 <i class="bi bi-cash-stack me-1"></i>
+
                                 Salário Base
+
                             </label>
 
                             <input asp-for="Seller.BaseSalary"
                                    class="form-control" />
 
-                            <span asp-validation-for="Seller.BaseSalary" class="text-danger"></span>
+                            <span asp-validation-for="Seller.BaseSalary"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
                         <div class="col-md-3 mb-3">
 
-                            <label asp-for="Seller.DepartamentId" class="form-label">
+                            <label asp-for="Seller.DepartamentId"
+                                   class="form-label">
+
                                 <i class="bi bi-building me-1"></i>
+
                                 Departamento
+
                             </label>
 
                             <select asp-for="Seller.DepartamentId"
                                     asp-items="@(new SelectList(Model.Departaments, "Id", "Name"))"
                                     class="form-select">
-
-                                <option value="">Selecione...</option>
-
                             </select>
 
-                            <span asp-validation-for="Seller.DepartamentId" class="text-danger"></span>
+                            <span asp-validation-for="Seller.DepartamentId"
+                                  class="text-danger">
+                            </span>
 
                         </div>
 
@@ -131,11 +170,11 @@
                         </a>
 
                         <button type="submit"
-                                class="btn btn-primary">
+                                class="btn btn-warning text-dark">
 
                             <i class="bi bi-check-circle me-2"></i>
 
-                            Cadastrar
+                            Salvar Alterações
 
                         </button>
 
