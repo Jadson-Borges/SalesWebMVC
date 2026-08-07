@@ -5,13 +5,11 @@
 }
 
 <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
-
     <div>
         <h2 class="mb-1">
             <i class="bi bi-people-fill text-info me-2"></i>
             @ViewData["Title"]
         </h2>
-
         <p class="text-secondary mb-0">
             Gerencie os vendedores cadastrados no sistema.
         </p>
@@ -21,13 +19,10 @@
         <i class="bi bi-plus-circle me-2"></i>
         Novo Vendedor
     </a>
-
 </div>
 
 <div class="card shadow-sm border-0">
-
     <div class="card-header d-flex justify-content-between align-items-center">
-
         <span class="fw-semibold">
             Lista de Vendedores
         </span>
@@ -35,119 +30,125 @@
         <span class="badge bg-info text-dark">
             @Model.Count() registro(s)
         </span>
-
     </div>
 
     <div class="card-body">
-
         @if (!Model.Any())
         {
             <div class="alert alert-info text-center mb-0">
-
                 <i class="bi bi-info-circle me-2"></i>
-
                 Nenhum vendedor cadastrado.
-
             </div>
         }
         else
         {
             <div class="table-responsive">
-
                 <table class="table table-hover align-middle mb-0">
-
                     <thead class="table-dark">
-
                         <tr>
-
                             <th>
                                 @Html.DisplayNameFor(model => model.Name)
                             </th>
-
                             <th>
                                 @Html.DisplayNameFor(model => model.Email)
                             </th>
-
                             <th>
                                 Data de Nascimento
                             </th>
-
                             <th class="text-end">
                                 Salário
-
                             </th>
-
                             <th class="text-center" style="width:170px">
                                 Ações
                             </th>
-
                         </tr>
-
                     </thead>
-
                     <tbody>
-
                         @foreach (var item in Model)
                         {
                             <tr>
-
                                 <td class="fw-semibold">
                                     @item.Name
                                 </td>
-
                                 <td>
                                     @item.Email
                                 </td>
-
                                 <td>
                                     @item.BirthDate.ToString("dd/MM/yyyy")
                                 </td>
-
                                 <td class="text-end">
                                     @item.BaseSalary.ToString("C")
                                 </td>
-
                                 <td class="text-center">
-
                                     <a asp-action="Edit"
                                        asp-route-id="@item.Id"
                                        class="btn btn-sm btn-warning me-1"
                                        title="Editar">
-
                                         <i class="bi bi-pencil-square"></i>
-
                                     </a>
 
                                     <a asp-action="Details"
                                        asp-route-id="@item.Id"
                                        class="btn btn-sm btn-info me-1"
                                        title="Detalhes">
-
                                         <i class="bi bi-eye"></i>
-
                                     </a>
 
                                     <a asp-action="Delete"
                                        asp-route-id="@item.Id"
                                        class="btn btn-sm btn-danger"
                                        title="Excluir">
-
                                         <i class="bi bi-trash"></i>
-
                                     </a>
-
                                 </td>
-
                             </tr>
                         }
-
                     </tbody>
-
                 </table>
-
             </div>
         }
-
     </div>
 
+    @{
+        int currentPage = ViewBag.CurrentPage;
+        int pageSize = ViewBag.PageSize;
+        int totalItems = ViewBag.TotalItems;
+        int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+    }
+
+    @if (totalPages > 1)
+    {
+        <div class="card-footer bg-transparent border-0 pt-3">
+            <nav aria-label="Navegação das páginas">
+                <ul class="pagination justify-content-center mb-0">
+                    <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@(currentPage - 1)">
+                            Anterior
+                        </a>
+                    </li>
+
+                    @for (int i = 1; i <= totalPages; i++)
+                    {
+                        <li class="page-item @(i == currentPage ? "active" : "")">
+                            <a class="page-link"
+                               asp-action="Index"
+                               asp-route-page="@i">
+                                @i
+                            </a>
+                        </li>
+                    }
+
+                    <li class="page-item @(currentPage == totalPages ? "disabled" : "")">
+                        <a class="page-link"
+                           asp-action="Index"
+                           asp-route-page="@(currentPage + 1)">
+                            Próxima
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    }
 </div>

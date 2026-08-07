@@ -31,6 +31,26 @@ namespace SalesWebMVC.Service
             Seller s4 = new Seller("Fernanda Souza", "fernanda.souza@gmail.com", new DateTime(1999, 2, 18), 2200.00m, d3);
             Seller s5 = new Seller("Lucas Pereira", "lucas.pereira@gmail.com", new DateTime(1997, 6, 30), 1950.00m, d2);
             Seller s6 = new Seller("Juliana Costa", "juliana.costa@gmail.com", new DateTime(1994, 9, 25), 2750.00m, d1);
+            Seller s7 = new Seller("Ricardo Almeida", "ricardo.almeida@gmail.com", new DateTime(1993, 3, 14), 2100.00m, d3);
+            Seller s8 = new Seller("Patrícia Martins", "patricia.martins@gmail.com", new DateTime(1996, 7, 9), 1850.00m, d2);
+            Seller s9 = new Seller("Gustavo Lima", "gustavo.lima@gmail.com", new DateTime(1991, 12, 1), 3200.00m, d1);
+            Seller s10 = new Seller("Camila Rodrigues", "camila.rodrigues@gmail.com", new DateTime(1998, 5, 27), 2400.00m, d3);
+            Seller s11 = new Seller("Bruno Ferreira", "bruno.ferreira@gmail.com", new DateTime(1990, 10, 15), 3100.00m, d2);
+            Seller s12 = new Seller("Aline Gomes", "aline.gomes@gmail.com", new DateTime(1997, 1, 8), 2050.00m, d1);
+            Seller s13 = new Seller("Eduardo Barbosa", "eduardo.barbosa@gmail.com", new DateTime(1994, 4, 19), 2600.00m, d3);
+            Seller s14 = new Seller("Larissa Ribeiro", "larissa.ribeiro@gmail.com", new DateTime(1999, 8, 3), 1900.00m, d2);
+            Seller s15 = new Seller("Thiago Carvalho", "thiago.carvalho@gmail.com", new DateTime(1992, 11, 22), 2950.00m, d1);
+            Seller s16 = new Seller("Renata Dias", "renata.dias@gmail.com", new DateTime(1995, 2, 11), 2250.00m, d3);
+            Seller s17 = new Seller("Felipe Araújo", "felipe.araujo@gmail.com", new DateTime(1996, 6, 17), 2350.00m, d2);
+            Seller s18 = new Seller("Vanessa Rocha", "vanessa.rocha@gmail.com", new DateTime(1993, 9, 29), 2800.00m, d1);
+            Seller s19 = new Seller("Marcelo Teixeira", "marcelo.teixeira@gmail.com", new DateTime(1991, 7, 13), 3300.00m, d3);
+            Seller s20 = new Seller("Priscila Nunes", "priscila.nunes@gmail.com", new DateTime(1998, 12, 6), 2150.00m, d2);
+            Seller s21 = new Seller("André Moreira", "andre.moreira@gmail.com", new DateTime(1990, 5, 20), 3450.00m, d1);
+            Seller s22 = new Seller("Bianca Melo", "bianca.melo@gmail.com", new DateTime(1997, 10, 31), 2000.00m, d3);
+            Seller s23 = new Seller("Leandro Santos", "leandro.santos@gmail.com", new DateTime(1994, 1, 24), 2700.00m, d2);
+            Seller s24 = new Seller("Natália Fernandes", "natalia.fernandes@gmail.com", new DateTime(1996, 3, 5), 2450.00m, d1);
+            Seller s25 = new Seller("Rafael Castro", "rafael.castro@gmail.com", new DateTime(1992, 8, 16), 3000.00m, d3);
+            Seller s26 = new Seller("Daniela Moraes", "daniela.moraes@gmail.com", new DateTime(1995, 11, 28), 2300.00m, d2);
 
 
             SalesRecord sr1 = new SalesRecord(new DateTime(2018, 9, 25), 11000.00m, SaleStatus.Billed, s1);
@@ -65,7 +85,7 @@ namespace SalesWebMVC.Service
             SalesRecord sr30 = new SalesRecord(new DateTime(2019, 8, 18), 8800.00m, SaleStatus.Pedding, s2);
 
             _context.Departament.AddRange(d1, d2, d3, d4);
-            _context.Seller.AddRange(s1, s2, s3, s4, s5, s6);
+            _context.Seller.AddRange(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10,s11, s12, s13, s14, s15, s16, s17, s18, s19, s20,s21, s22, s23, s24, s25, s26);
             _context.SalesRecord.AddRange(sr1, sr2, sr3, sr4, sr5, sr6, sr7, sr8, sr9, sr10, sr11, sr12, sr13, sr14,
                 sr15, sr16, sr17, sr18, sr19, sr20, sr21, sr22, sr23, sr24, sr25, sr26, sr27, sr28, sr29, sr30);
 

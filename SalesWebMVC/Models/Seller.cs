@@ -5,6 +5,8 @@ namespace SalesWebMVC.Models
 {
     public class Seller
     {
+        [Required]
+        [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} Tamanho do nome deve ter entre {2} a {1} caracteres") ]
         public int Id { get; set; }
         [Display(Name = "Nome")]
         public string Name { get; set; }

@@ -2,7 +2,7 @@
 using SalesWebMVC.Models;
 using SalesWebMVC.Models.ViewModels;
 using SalesWebMVC.Services;
-using SalesWebMVC.Services.Exceptions;
+using X.PagedList;
 using System.Diagnostics;
 
 
@@ -18,9 +18,15 @@ namespace SalesWebMVC.Controllers
             _sellerService = sellerService;
             _departamentService = departamentService;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var list = _sellerService.FindAll();
+            const int pageSize = 10;
+            var list = _sellerService.FindAll().Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalItems = _sellerService.FindAll().Count();
+
             return View(list);
         }
 

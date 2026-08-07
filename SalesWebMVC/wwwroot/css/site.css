@@ -9,7 +9,8 @@ body {
 }
 
 main {
-    flex: 1;
+    flex: 1 0 auto;
+    padding-bottom 2rem;
 }
 
 /* ========================= */
@@ -127,6 +128,7 @@ main {
 /* ========================= */
 
 .footer {
+    flex-shrink: 0;
     border-top: 1px solid rgba(255,255,255,.08);
     background: #272b30;
     color: #adb5bd;
@@ -184,4 +186,32 @@ h2 {
     main {
         padding-top: 20px !important;
     }
+    
+}
+
+/* ========================= */
+/* Paginação */
+/* ========================= */
+
+.pagination .page-link {
+    background: #343a40;
+    color: #fff;
+    border: 1px solid #495057;
+}
+
+.pagination .page-item.active .page-link {
+    background: #4fc3f7;
+    border-color: #4fc3f7;
+    color: #000;
+    font-weight: 600;
+}
+
+.pagination .page-link:hover {
+    background: #495057;
+    color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+    background: #2d3238;
+    color: #777;
 }
